@@ -2,6 +2,7 @@ package fr.polytech.cinemaRESTful.entities;
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "directors")
+@Table(name = "categories")
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,6 +29,7 @@ public class Category implements Serializable {
     @Column(name = "full_label")
     private String fullLabel;
 
+    @JsonbTransient
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
     private List<Movie> movies = new ArrayList<Movie>();
 

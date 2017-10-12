@@ -5,9 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table(name = "actors")
@@ -30,13 +28,10 @@ public class Actor implements Serializable {
     private String firstname;
 
     @Column(name = "birth_date")
-    private LocalDate birthDate;
+    private Date birthDate;
 
     @Column(name = "date_of_death")
-    private LocalDate dateOfDeath;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "actor")
-    private List<Character> characters = new ArrayList<Character>();
+    private Date dateOfDeath;
 
     public int getId() {
         return id;
@@ -62,27 +57,19 @@ public class Actor implements Serializable {
         this.firstname = firstname;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(final LocalDate birthDate) {
+    public void setBirthDate(final Date birthDate) {
         this.birthDate = birthDate;
     }
 
-    public LocalDate getDateOfDeath() {
+    public Date getDateOfDeath() {
         return dateOfDeath;
     }
 
-    public void setDateOfDeath(final LocalDate dateOfDeath) {
+    public void setDateOfDeath(final Date dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
-    }
-
-    public List<Character> getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(final List<Character> characters) {
-        this.characters = characters;
     }
 }

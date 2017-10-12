@@ -5,9 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table(name = "movies")
@@ -31,7 +29,7 @@ public class Movie implements Serializable {
 
     @NotNull
     @Column(name = "released_date")
-    private LocalDate releaseDate;
+    private Date releaseDate;
 
     @NotNull
     @Column(name = "budget")
@@ -43,16 +41,13 @@ public class Movie implements Serializable {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_director")
     private Director director;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_category")
     private Category category;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "movie")
-    private List<Character> characters = new ArrayList<Character>();
 
     public int getId() {
         return id;
@@ -78,11 +73,11 @@ public class Movie implements Serializable {
         this.duration = duration;
     }
 
-    public LocalDate getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(final LocalDate releaseDate) {
+    public void setReleaseDate(final Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -116,13 +111,5 @@ public class Movie implements Serializable {
 
     public void setCategory(final Category category) {
         this.category = category;
-    }
-
-    public List<Character> getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(final List<Character> characters) {
-        this.characters = characters;
     }
 }

@@ -2,6 +2,7 @@ package fr.polytech.cinemaRESTful.entities;
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public class Director implements Serializable {
     @Column(name = "firstname")
     private String firstname;
 
+    @JsonbTransient
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "director")
     private List<Movie> movies = new ArrayList<Movie>();
 
