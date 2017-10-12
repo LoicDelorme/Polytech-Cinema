@@ -1,4 +1,4 @@
-package fr.polytech.cinemaRESTful;
+package fr.polytech.cinemaRESTful.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
