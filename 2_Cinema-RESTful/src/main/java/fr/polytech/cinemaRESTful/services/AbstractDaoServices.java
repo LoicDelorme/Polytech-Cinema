@@ -4,7 +4,7 @@ import fr.polytech.cinemaRESTful.persistence.DatabaseManager;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.criteria.CriteriaQuery;
+import java.io.Serializable;
 import java.util.List;
 
 public class AbstractDaoServices<T> implements DaoServices<T> {
@@ -19,11 +19,11 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
     }
 
     @Override
-    public T get(Object id) {
-        Session session = this.databaseManager.getSession();
+    public T get(Serializable id) {
+        final Session session = this.databaseManager.getSession();
 
         session.beginTransaction();
-        T entity = session.find(this.entityClass, id);
+        final T entity = session.get(this.entityClass, id);
         session.getTransaction().commit();
 
         session.close();
@@ -33,11 +33,10 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
 
     @Override
     public List<T> getAll() {
-        Session session = this.databaseManager.getSession();
+        final Session session = this.databaseManager.getSession();
 
         session.beginTransaction();
-        CriteriaQuery<T> criteriaQuery = session.getCriteriaBuilder().createQuery(this.entityClass);
-        List<T> entities = session.createQuery(criteriaQuery.select(criteriaQuery.from(this.entityClass))).getResultList();
+        final List<T> entities = session.createCriteria(this.entityClass).list();
         session.getTransaction().commit();
 
         session.close();
@@ -47,7 +46,7 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
 
     @Override
     public void insert(T object) {
-        Session session = this.databaseManager.getSession();
+        final Session session = this.databaseManager.getSession();
 
         session.beginTransaction();
         session.saveOrUpdate(object);
@@ -58,7 +57,7 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
 
     @Override
     public void update(T object) {
-        Session session = this.databaseManager.getSession();
+        final Session session = this.databaseManager.getSession();
 
         session.beginTransaction();
         session.update(object);
@@ -69,7 +68,7 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
 
     @Override
     public void delete(T object) {
-        Session session = this.databaseManager.getSession();
+        final Session session = this.databaseManager.getSession();
 
         session.beginTransaction();
         session.delete(object);

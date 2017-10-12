@@ -1,10 +1,11 @@
 package fr.polytech.cinemaRESTful.services;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface DaoServices<T> {
 
-    public T get(Object id);
+    public T get(Serializable id);
 
     public List<T> getAll();
 
