@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "directors")
@@ -25,6 +27,9 @@ public class Director implements Serializable {
     @Length(max = 100)
     @Column(name = "firstname")
     private String firstname;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "director")
+    private List<Movie> movies = new ArrayList<Movie>();
 
     public int getId() {
         return id;
@@ -48,5 +53,13 @@ public class Director implements Serializable {
 
     public void setFirstname(final String firstname) {
         this.firstname = firstname;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(final List<Movie> movies) {
+        this.movies = movies;
     }
 }

@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "actors")
@@ -32,6 +34,9 @@ public class Actor implements Serializable {
 
     @Column(name = "date_of_death")
     private LocalDate dateOfDeath;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "actor")
+    private List<Character> characters = new ArrayList<Character>();
 
     public int getId() {
         return id;
@@ -71,5 +76,13 @@ public class Actor implements Serializable {
 
     public void setDateOfDeath(final LocalDate dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
+    }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(final List<Character> characters) {
+        this.characters = characters;
     }
 }

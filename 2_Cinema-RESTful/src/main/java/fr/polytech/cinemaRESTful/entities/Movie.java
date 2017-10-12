@@ -6,7 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -49,6 +50,9 @@ public class Movie implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id")
     private Category category;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "movie")
+    private List<Character> characters = new ArrayList<Character>();
 
     public int getId() {
         return id;
@@ -112,5 +116,13 @@ public class Movie implements Serializable {
 
     public void setCategory(final Category category) {
         this.category = category;
+    }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(final List<Character> characters) {
+        this.characters = characters;
     }
 }
