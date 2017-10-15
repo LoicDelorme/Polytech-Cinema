@@ -1,4 +1,4 @@
-package fr.polytech.cinemaRESTful.deserializers;
+package fr.polytech.cinemaRESTful.controllers.deserializers;
 
 public interface Deserializer<I> {
 

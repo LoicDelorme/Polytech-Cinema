@@ -10,7 +10,14 @@
         <property name="hibernate.connection.username">SpringAppUser</property>
         <property name="hibernate.connection.password">SpringAppUser</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="show_sql">false</property>
+        <property name="show_sql">true</property>
         <property name="format_sql">true</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+
+        <mapping class="fr.polytech.cinemaRESTful.entities.Actor" />
+        <mapping class="fr.polytech.cinemaRESTful.entities.Category" />
+        <mapping class="fr.polytech.cinemaRESTful.entities.Character" />
+        <mapping class="fr.polytech.cinemaRESTful.entities.Director" />
+        <mapping class="fr.polytech.cinemaRESTful.entities.Movie" />
     </session-factory>
 </hibernate-configuration>

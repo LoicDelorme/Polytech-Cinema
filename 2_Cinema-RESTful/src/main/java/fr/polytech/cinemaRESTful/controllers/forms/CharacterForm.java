@@ -1,4 +1,4 @@
-package fr.polytech.cinemaRESTful.forms;
+package fr.polytech.cinemaRESTful.controllers.forms;
 
 public class CharacterForm {
 

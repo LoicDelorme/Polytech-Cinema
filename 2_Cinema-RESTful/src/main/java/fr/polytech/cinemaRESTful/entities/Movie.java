@@ -36,8 +36,8 @@ public class Movie implements Serializable {
     private int budget;
 
     @NotNull
-    @Column(name = "amont_of_revenue")
-    private int amontOfRevenue;
+    @Column(name = "amount_of_revenue")
+    private int amountOfRevenue;
 
     @NotNull
     @ManyToOne
@@ -89,12 +89,12 @@ public class Movie implements Serializable {
         this.budget = budget;
     }
 
-    public int getAmontOfRevenue() {
-        return amontOfRevenue;
+    public int getAmountOfRevenue() {
+        return amountOfRevenue;
     }
 
-    public void setAmontOfRevenue(final int amontOfRevenue) {
-        this.amontOfRevenue = amontOfRevenue;
+    public void setAmountOfRevenue(final int amountOfRevenue) {
+        this.amountOfRevenue = amountOfRevenue;
     }
 
     public Director getDirector() {

@@ -30,7 +30,7 @@ public class Director implements Serializable {
     private String firstname;
 
     @JsonbTransient
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "director")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "director")
     private List<Movie> movies = new ArrayList<Movie>();
 
     public int getId() {

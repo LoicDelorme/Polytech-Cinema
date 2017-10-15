@@ -30,7 +30,7 @@ public class Category implements Serializable {
     private String fullLabel;
 
     @JsonbTransient
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Movie> movies = new ArrayList<Movie>();
 
     public int getId() {

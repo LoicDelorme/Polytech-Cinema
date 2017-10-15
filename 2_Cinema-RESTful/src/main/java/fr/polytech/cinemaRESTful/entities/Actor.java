@@ -2,10 +2,13 @@ package fr.polytech.cinemaRESTful.entities;
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "actors")
@@ -32,6 +35,10 @@ public class Actor implements Serializable {
 
     @Column(name = "date_of_death")
     private Date dateOfDeath;
+
+    @JsonbTransient
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "actor", orphanRemoval = true)
+    private List<Character> characters = new ArrayList<Character>();
 
     public int getId() {
         return id;
@@ -71,5 +78,13 @@ public class Actor implements Serializable {
 
     public void setDateOfDeath(final Date dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
+    }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(final List<Character> characters) {
+        this.characters = characters;
     }
 }

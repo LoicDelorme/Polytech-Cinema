@@ -1,4 +1,4 @@
-package fr.polytech.cinemaRESTful.deserializers;
+package fr.polytech.cinemaRESTful.controllers.deserializers;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;

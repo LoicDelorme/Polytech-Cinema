@@ -1,6 +1,5 @@
 package fr.polytech.cinemaRESTful;
 
-import fr.polytech.cinemaRESTful.persistence.DatabaseManager;
 import fr.polytech.cinemaRESTful.services.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,11 +10,6 @@ public class CinemaRestfulApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CinemaRestfulApplication.class, args);
-    }
-
-    @Bean
-    public DatabaseManager databaseManager() {
-        return new DatabaseManager();
     }
 
     @Bean

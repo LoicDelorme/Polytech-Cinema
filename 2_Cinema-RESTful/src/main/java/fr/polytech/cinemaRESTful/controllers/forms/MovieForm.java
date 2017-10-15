@@ -1,4 +1,4 @@
-package fr.polytech.cinemaRESTful.forms;
+package fr.polytech.cinemaRESTful.controllers.forms;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ public class MovieForm {
 
     private int budget;
 
-    private int amontOfRevenue;
+    private int amountOfRevenue;
 
     private int directorId;
 
@@ -60,12 +60,12 @@ public class MovieForm {
         this.budget = budget;
     }
 
-    public int getAmontOfRevenue() {
-        return amontOfRevenue;
+    public int getAmountOfRevenue() {
+        return amountOfRevenue;
     }
 
-    public void setAmontOfRevenue(final int amontOfRevenue) {
-        this.amontOfRevenue = amontOfRevenue;
+    public void setAmountOfRevenue(final int amountOfRevenue) {
+        this.amountOfRevenue = amountOfRevenue;
     }
 
     public int getDirectorId() {

@@ -1,16 +1,15 @@
 package fr.polytech.cinemaRESTful.services;
 
-import fr.polytech.cinemaRESTful.persistence.DatabaseManager;
+import fr.polytech.cinemaRESTful.sessions.HibernateSessionManager;
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public class AbstractDaoServices<T> implements DaoServices<T> {
-
-    @Autowired
-    private DatabaseManager databaseManager;
 
     private final Class<T> entityClass;
 
@@ -20,7 +19,7 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
 
     @Override
     public T get(Serializable id) {
-        final Session session = this.databaseManager.getSession();
+        final Session session = HibernateSessionManager.getSession();
 
         session.beginTransaction();
         final T entity = session.get(this.entityClass, id);
@@ -33,7 +32,7 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
 
     @Override
     public List<T> getAll() {
-        final Session session = this.databaseManager.getSession();
+        final Session session = HibernateSessionManager.getSession();
 
         session.beginTransaction();
         final List<T> entities = session.createCriteria(this.entityClass).list();
@@ -45,11 +44,37 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
     }
 
     @Override
-    public void insert(T object) {
-        final Session session = this.databaseManager.getSession();
+    public List<T> filter(Map<String, String> parameters) {
+        final Session session = HibernateSessionManager.getSession();
 
         session.beginTransaction();
-        session.saveOrUpdate(object);
+        final List<T> entities = session.createCriteria(this.entityClass).add(Restrictions.allEq(parameters)).list();
+        session.getTransaction().commit();
+
+        session.close();
+
+        return entities;
+    }
+
+    @Override
+    public int count() {
+        final Session session = HibernateSessionManager.getSession();
+
+        session.beginTransaction();
+        final int nbEntities = ((Long) session.createCriteria(this.entityClass).setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        session.getTransaction().commit();
+
+        session.close();
+
+        return nbEntities;
+    }
+
+    @Override
+    public void insert(T object) {
+        final Session session = HibernateSessionManager.getSession();
+
+        session.beginTransaction();
+        session.save(object);
         session.getTransaction().commit();
 
         session.close();
@@ -57,7 +82,7 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
 
     @Override
     public void update(T object) {
-        final Session session = this.databaseManager.getSession();
+        final Session session = HibernateSessionManager.getSession();
 
         session.beginTransaction();
         session.update(object);
@@ -68,7 +93,7 @@ public class AbstractDaoServices<T> implements DaoServices<T> {
 
     @Override
     public void delete(T object) {
-        final Session session = this.databaseManager.getSession();
+        final Session session = HibernateSessionManager.getSession();
 
         session.beginTransaction();
         session.delete(object);

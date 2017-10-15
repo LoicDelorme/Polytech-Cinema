@@ -1,12 +1,18 @@
-package fr.polytech.cinemaRESTful.forms;
+package fr.polytech.cinemaRESTful.controllers.forms;
 
-public class DirectorForm {
+import java.util.Date;
+
+public class ActorForm {
 
     private int id;
 
     private String lastname;
 
     private String firstname;
+
+    private Date birthDate;
+
+    private Date dateOfDeath;
 
     public int getId() {
         return id;
@@ -30,5 +36,21 @@ public class DirectorForm {
 
     public void setFirstname(final String firstname) {
         this.firstname = firstname;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(final Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Date getDateOfDeath() {
+        return dateOfDeath;
+    }
+
+    public void setDateOfDeath(final Date dateOfDeath) {
+        this.dateOfDeath = dateOfDeath;
     }
 }
