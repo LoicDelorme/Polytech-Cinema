@@ -34,7 +34,7 @@ CREATE TABLE movies (
   duration INT NOT NULL,
   released_date DATE NOT NULL,
   budget INT NOT NULL,
-  amont_of_revenue INT NOT NULL,
+  amount_of_revenue INT NOT NULL,
   id_director INT NOT NULL,
   id_category INT NOT NULL,
   FOREIGN KEY (id_director) REFERENCES directors (id),
