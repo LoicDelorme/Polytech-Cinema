@@ -45,6 +45,11 @@ public class DirectorController extends AbstractController {
         return SERIALIZER.to(new SuccessResponse(directors));
     }
 
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public String count() {
+        return SERIALIZER.to(new SuccessResponse(this.directorDaoServices.count()));
+    }
+
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(@RequestBody String data) {
         final DirectorForm directorForm = DESERIALIZER.from(data, DirectorForm.class);

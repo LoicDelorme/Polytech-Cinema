@@ -52,6 +52,11 @@ public class CharacterController extends AbstractController {
         return SERIALIZER.to(new SuccessResponse(characters));
     }
 
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public String count() {
+        return SERIALIZER.to(new SuccessResponse(this.characterDaoServices.count()));
+    }
+
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(@RequestBody String data) {
         final CharacterForm characterForm = DESERIALIZER.from(data, CharacterForm.class);

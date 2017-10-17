@@ -47,6 +47,11 @@ public class MovieController extends AbstractController {
         return SERIALIZER.to(new SuccessResponse(movies));
     }
 
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public String count() {
+        return SERIALIZER.to(new SuccessResponse(this.movieDaoServices.count()));
+    }
+
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(@RequestBody String data) {
         final MovieForm movieForm = DESERIALIZER.from(data, MovieForm.class);

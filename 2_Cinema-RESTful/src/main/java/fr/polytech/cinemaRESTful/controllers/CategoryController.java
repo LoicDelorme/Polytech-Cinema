@@ -45,6 +45,11 @@ public class CategoryController extends AbstractController {
         return SERIALIZER.to(new SuccessResponse(categories));
     }
 
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public String count() {
+        return SERIALIZER.to(new SuccessResponse(this.categoryDaoServices.count()));
+    }
+
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(@RequestBody String data) {
         final CategoryForm categoryForm = DESERIALIZER.from(data, CategoryForm.class);

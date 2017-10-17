@@ -45,6 +45,11 @@ public class ActorController extends AbstractController {
         return SERIALIZER.to(actors);
     }
 
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public String count() {
+        return SERIALIZER.to(new SuccessResponse(this.actorDaoServices.count()));
+    }
+
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(@RequestBody String data) {
         final ActorForm actorForm = DESERIALIZER.from(data, ActorForm.class);
