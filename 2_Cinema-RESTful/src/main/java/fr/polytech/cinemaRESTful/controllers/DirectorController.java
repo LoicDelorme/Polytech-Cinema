@@ -75,7 +75,7 @@ public class DirectorController extends AbstractController {
         return SERIALIZER.to(new SuccessResponse(director));
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable int id) {
         final Director director = this.directorDaoServices.get(id);
         this.directorDaoServices.delete(director);

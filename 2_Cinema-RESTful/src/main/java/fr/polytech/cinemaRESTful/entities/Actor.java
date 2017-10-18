@@ -6,9 +6,7 @@ import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "actors")
@@ -39,6 +37,10 @@ public class Actor implements Serializable {
     @JsonbTransient
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "actor", orphanRemoval = true)
     private List<Character> characters = new ArrayList<Character>();
+
+    @JsonbTransient
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "actors")
+    private Set<Movie> movies = new HashSet<Movie>();
 
     public int getId() {
         return id;
@@ -86,5 +88,13 @@ public class Actor implements Serializable {
 
     public void setCharacters(final List<Character> characters) {
         this.characters = characters;
+    }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(final Set<Movie> movies) {
+        this.movies = movies;
     }
 }

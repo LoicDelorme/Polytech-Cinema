@@ -2,10 +2,13 @@ package fr.polytech.cinemaRESTful.entities;
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "movies")
@@ -48,6 +51,11 @@ public class Movie implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
+
+    @JsonbTransient
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "characters", joinColumns = { @JoinColumn(name = "id_movie", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_actor", nullable = false, updatable = false) })
+    private Set<Actor> actors = new HashSet<Actor>();
 
     public int getId() {
         return id;
@@ -111,5 +119,13 @@ public class Movie implements Serializable {
 
     public void setCategory(final Category category) {
         this.category = category;
+    }
+
+    public Set<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(final Set<Actor> actors) {
+        this.actors = actors;
     }
 }

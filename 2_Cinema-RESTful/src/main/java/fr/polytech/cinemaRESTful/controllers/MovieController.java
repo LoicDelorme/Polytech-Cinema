@@ -33,6 +33,12 @@ public class MovieController extends AbstractController {
         return SERIALIZER.to(new SuccessResponse(movie));
     }
 
+    @RequestMapping(value = "overview/{id}/actors", method = RequestMethod.GET)
+    public String actorsOverview(@PathVariable int id) {
+        final Movie movie = this.movieDaoServices.get(id);
+        return SERIALIZER.to(new SuccessResponse(movie.getActors()));
+    }
+
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public String filter(@RequestBody String data) {
         final Map<String, String> parameters = DESERIALIZER.from(data, HashMap.class);
@@ -87,7 +93,7 @@ public class MovieController extends AbstractController {
         return SERIALIZER.to(new SuccessResponse(movie));
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable int id) {
         final Movie movie = this.movieDaoServices.get(id);
         this.movieDaoServices.delete(movie);
