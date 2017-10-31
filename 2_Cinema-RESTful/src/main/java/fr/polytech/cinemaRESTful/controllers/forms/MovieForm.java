@@ -1,8 +1,14 @@
 package fr.polytech.cinemaRESTful.controllers.forms;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class MovieForm {
+
+    public static final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
 
     private int id;
 
@@ -10,7 +16,7 @@ public class MovieForm {
 
     private int duration;
 
-    private Date releaseDate;
+    private String releaseDate;
 
     private int budget;
 
@@ -45,10 +51,17 @@ public class MovieForm {
     }
 
     public Date getReleaseDate() {
-        return releaseDate;
+        if (this.releaseDate != null) {
+            try {
+                return DATE_FORMATTER.parse(this.releaseDate);
+            } catch (ParseException e) {
+            }
+        }
+
+        return null;
     }
 
-    public void setReleaseDate(final Date releaseDate) {
+    public void setReleaseDate(final String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
