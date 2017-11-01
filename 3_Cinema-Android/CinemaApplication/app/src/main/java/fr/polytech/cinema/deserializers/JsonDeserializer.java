@@ -1,14 +1,15 @@
 package fr.polytech.cinema.deserializers;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 public class JsonDeserializer implements Deserializer<String> {
 
-    public static final Jsonb JSON_BUILDER = JsonbBuilder.create();
+    public static final Gson GSON_BUILDER = new GsonBuilder().serializeNulls().create();
 
     @Override
-    public <O> O from(String in, Class<O> clazz) {
-        return JSON_BUILDER.fromJson(in, clazz);
+    public <O> O from(String in, TypeToken<O> typeToken) {
+        return GSON_BUILDER.fromJson(in, typeToken.getType());
     }
 }

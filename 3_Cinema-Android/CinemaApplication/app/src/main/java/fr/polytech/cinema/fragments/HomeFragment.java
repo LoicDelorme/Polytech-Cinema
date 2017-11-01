@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import fr.polytech.cinema.activities.IHome;
-import fr.polytech.cinema.cinemaapplication.R;
+import fr.polytech.cinema.R;
 
 public class HomeFragment extends AbstractFragment implements View.OnClickListener {
 

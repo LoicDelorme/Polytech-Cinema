@@ -1,12 +1,8 @@
 package fr.polytech.cinema.entities;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.Serializable;
 
-public class Actor {
+public class Actor implements Serializable {
 
     private int id;
 
@@ -14,13 +10,9 @@ public class Actor {
 
     private String firstname;
 
-    private Date birthDate;
+    private String birthDate;
 
-    private Date dateOfDeath;
-
-    private List<Character> characters = new ArrayList<Character>();
-
-    private Set<Movie> movies = new HashSet<Movie>();
+    private String dateOfDeath;
 
     public int getId() {
         return id;
@@ -46,35 +38,19 @@ public class Actor {
         this.firstname = firstname;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(final Date birthDate) {
+    public void setBirthDate(final String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Date getDateOfDeath() {
+    public String getDateOfDeath() {
         return dateOfDeath;
     }
 
-    public void setDateOfDeath(final Date dateOfDeath) {
+    public void setDateOfDeath(final String dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
-    }
-
-    public List<Character> getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(final List<Character> characters) {
-        this.characters = characters;
-    }
-
-    public Set<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(final Set<Movie> movies) {
-        this.movies = movies;
     }
 }

@@ -48,7 +48,7 @@ public class ActorController extends AbstractController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list() {
         final List<Actor> actors = this.actorDaoServices.getAll();
-        return SERIALIZER.to(actors);
+        return SERIALIZER.to(new SuccessResponse(actors));
     }
 
     @RequestMapping(value = "/count", method = RequestMethod.GET)

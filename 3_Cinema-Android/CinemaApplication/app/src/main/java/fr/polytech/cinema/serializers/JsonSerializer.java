@@ -1,15 +1,14 @@
 package fr.polytech.cinema.serializers;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.json.bind.JsonbConfig;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class JsonSerializer implements Serializer<String> {
 
-    public static final Jsonb JSON_BUILDER = JsonbBuilder.create(new JsonbConfig().withNullValues(false));
+    public static final Gson GSON_BUILDER = new GsonBuilder().serializeNulls().create();
 
     @Override
     public <I> String to(I in) {
-        return JSON_BUILDER.toJson(in);
+        return GSON_BUILDER.toJson(in);
     }
 }
