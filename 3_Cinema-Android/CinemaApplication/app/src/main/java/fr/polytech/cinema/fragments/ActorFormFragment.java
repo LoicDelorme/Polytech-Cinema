@@ -16,9 +16,7 @@ import fr.polytech.cinema.R;
 import fr.polytech.cinema.activities.IHome;
 import fr.polytech.cinema.entities.Actor;
 
-public class ActorEditorFragment extends AbstractFragment implements View.OnClickListener {
-
-    public static final String ACTOR_EDITOR_MESSAGE_KEY = "actor";
+public class ActorFormFragment extends AbstractFragment implements View.OnClickListener {
 
     public static final String DATE_FORMAT = "yyyy-MM-dd";
 
@@ -26,7 +24,7 @@ public class ActorEditorFragment extends AbstractFragment implements View.OnClic
 
     @Override
     public int getLayout() {
-        return R.layout.fragment_actor_editor;
+        return R.layout.fragment_actor_form;
     }
 
     @Override
@@ -36,7 +34,7 @@ public class ActorEditorFragment extends AbstractFragment implements View.OnClic
         try {
             this.home = (IHome) context;
         } catch (ClassCastException ex) {
-            Log.e("ActorEditorFragment", "ClassCastException", ex);
+            Log.e("ActorFormFragment", "ClassCastException", ex);
         }
     }
 
@@ -45,13 +43,8 @@ public class ActorEditorFragment extends AbstractFragment implements View.OnClic
         super.onActivityCreated(savedInstanceState);
 
         final FragmentActivity activity = getActivity();
-        final Actor actor = (Actor) getArguments().getSerializable(ACTOR_EDITOR_MESSAGE_KEY);
-
-        ((TextView) activity.findViewById(R.id.identifier_text_view)).setText("" + actor.getId());
-        ((EditText) activity.findViewById(R.id.lastname_edit_text)).setText(actor.getLastname());
-        ((EditText) activity.findViewById(R.id.firstname_edit_text)).setText(actor.getFirstname());
-        ((EditText) activity.findViewById(R.id.birth_date_edit_text)).setText(actor.getBirthDate() == null ? DATE_FORMAT : actor.getBirthDate().substring(0, 10));
-        ((EditText) activity.findViewById(R.id.date_of_death_edit_text)).setText(actor.getDateOfDeath() == null ? DATE_FORMAT : actor.getDateOfDeath().substring(0, 10));
+        ((EditText) activity.findViewById(R.id.birth_date_edit_text)).setText(DATE_FORMAT);
+        ((EditText) activity.findViewById(R.id.date_of_death_edit_text)).setText(DATE_FORMAT);
 
         activity.findViewById(R.id.validate_actor_form_button).setOnClickListener(this);
         activity.findViewById(R.id.cancel_actor_form_button).setOnClickListener(this);
@@ -63,25 +56,23 @@ public class ActorEditorFragment extends AbstractFragment implements View.OnClic
             try {
                 final FragmentActivity activity = getActivity();
 
-                final String id = ((TextView) activity.findViewById(R.id.identifier_text_view)).getText().toString();
                 final String lastname = ((EditText) activity.findViewById(R.id.lastname_edit_text)).getText().toString();
                 final String firstname = ((EditText) activity.findViewById(R.id.firstname_edit_text)).getText().toString();
                 final String birthDate = ((EditText) activity.findViewById(R.id.birth_date_edit_text)).getText().toString();
                 final String dateOfDeath = ((EditText) activity.findViewById(R.id.date_of_death_edit_text)).getText().toString();
 
                 final Actor newActor = new Actor();
-                newActor.setId(Integer.parseInt(id));
                 newActor.setLastname(lastname);
                 newActor.setFirstname(firstname);
                 newActor.setBirthDate(birthDate.isEmpty() || birthDate.equals(DATE_FORMAT) ? null : formatDate(birthDate));
                 newActor.setDateOfDeath(dateOfDeath.isEmpty() || dateOfDeath.equals(DATE_FORMAT) ? null : formatDate(dateOfDeath));
 
-                this.home.notifyValidateActorEditorButtonHasBeenPressed(newActor);
+                this.home.notifyValidateActorFormButtonHasBeenPressed(newActor);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         } else if (view.getId() == R.id.cancel_actor_form_button) {
-            this.home.notifyCancelActorEditorButtonHasBeenPressed();
+            this.home.notifyCancelActorFormButtonHasBeenPressed();
         }
     }
 

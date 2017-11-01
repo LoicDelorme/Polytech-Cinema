@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lastname_text_view_label"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/lastname_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/firstname_text_view_label"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/firstname_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/birth_date_text_view_label"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/birth_date_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_of_death_text_view_label"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/date_of_death_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/validate_actor_form_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/validate_actor_form_button_label" />
+
+                <Button
+                    android:id="@+id/cancel_actor_form_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/cancel_actor_form_button_label" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -5,14 +5,14 @@
     <!-- Home Fragment-->
     <string name="web_services_button_label">Call webservice</string>
 
-    <!-- Actor Viewer & Editor Fragment-->
+    <!-- Actor Viewer & Editor & Form Fragment-->
     <string name="identifier_text_view_label">ID</string>
     <string name="lastname_text_view_label">Lastname</string>
     <string name="firstname_text_view_label">Firstname</string>
     <string name="birth_date_text_view_label">Birth date</string>
     <string name="date_of_death_text_view_label">Date of death</string>
 
-    <!-- Actor Editor Fragment-->
+    <!-- Actor Editor & Form Fragment-->
     <string name="validate_actor_form_button_label">Apply</string>
     <string name="cancel_actor_form_button_label">Cancel</string>
 </resources>

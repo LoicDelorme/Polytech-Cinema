@@ -8,6 +8,8 @@ public interface IHome {
 
     public void notifyActorHasBeenSelected(Actor actor);
 
+    public void notifyAddActorButtonHasBeenPressed();
+
     public void notifyEditActorButtonHasBeenPressed(Actor actor);
 
     public void notifyDeleteActorButtonHasBeenPressed(Actor actor);
@@ -15,6 +17,10 @@ public interface IHome {
     public void notifyValidateActorFormButtonHasBeenPressed(Actor newActor);
 
     public void notifyCancelActorFormButtonHasBeenPressed();
+
+    public void notifyValidateActorEditorButtonHasBeenPressed(Actor newActor);
+
+    public void notifyCancelActorEditorButtonHasBeenPressed();
 
     public void notifySuccessfulMessage(String message);
 

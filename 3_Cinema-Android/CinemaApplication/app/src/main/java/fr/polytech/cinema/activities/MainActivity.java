@@ -9,10 +9,12 @@ import android.widget.Toast;
 import fr.polytech.cinema.R;
 import fr.polytech.cinema.entities.Actor;
 import fr.polytech.cinema.fragments.ActorEditorFragment;
+import fr.polytech.cinema.fragments.ActorFormFragment;
 import fr.polytech.cinema.fragments.ActorViewerFragment;
 import fr.polytech.cinema.fragments.HomeFragment;
 import fr.polytech.cinema.tasks.DeleteActorAsyncTask;
 import fr.polytech.cinema.tasks.GetAllActorsAsyncTask;
+import fr.polytech.cinema.tasks.InsertActorAsyncTask;
 import fr.polytech.cinema.tasks.UpdateActorAsyncTask;
 
 public class MainActivity extends AppCompatActivity implements IHome {
@@ -63,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements IHome {
     }
 
     @Override
+    public void notifyAddActorButtonHasBeenPressed() {
+        replaceFragment(new ActorFormFragment(), getIntent().getExtras());
+    }
+
+    @Override
     public void notifyEditActorButtonHasBeenPressed(Actor actor) {
         final Bundle extras = getIntent().getExtras() == null ? new Bundle() : getIntent().getExtras();
         extras.putSerializable(ActorEditorFragment.ACTOR_EDITOR_MESSAGE_KEY, actor);
@@ -78,12 +85,25 @@ public class MainActivity extends AppCompatActivity implements IHome {
 
     @Override
     public void notifyValidateActorFormButtonHasBeenPressed(Actor newActor) {
-        final UpdateActorAsyncTask asyncTask = new UpdateActorAsyncTask(this, this, newActor);
+        final InsertActorAsyncTask asyncTask = new InsertActorAsyncTask(this, this, newActor);
         asyncTask.execute();
     }
 
     @Override
     public void notifyCancelActorFormButtonHasBeenPressed() {
+        replaceFragment(new HomeFragment(), getIntent().getExtras());
+
+        notifyWebServiceButtonHasBeenPressed();
+    }
+
+    @Override
+    public void notifyValidateActorEditorButtonHasBeenPressed(Actor newActor) {
+        final UpdateActorAsyncTask asyncTask = new UpdateActorAsyncTask(this, this, newActor);
+        asyncTask.execute();
+    }
+
+    @Override
+    public void notifyCancelActorEditorButtonHasBeenPressed() {
         replaceFragment(new HomeFragment(), getIntent().getExtras());
 
         notifyWebServiceButtonHasBeenPressed();

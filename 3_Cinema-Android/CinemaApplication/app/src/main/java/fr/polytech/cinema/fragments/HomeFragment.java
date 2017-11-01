@@ -3,6 +3,7 @@ package fr.polytech.cinema.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -33,11 +34,17 @@ public class HomeFragment extends AbstractFragment implements View.OnClickListen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        getActivity().findViewById(R.id.web_services_button).setOnClickListener(this);
+        final FragmentActivity activity = getActivity();
+        activity.findViewById(R.id.web_services_button).setOnClickListener(this);
+        activity.findViewById(R.id.add_actor_button).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        this.home.notifyWebServiceButtonHasBeenPressed();
+        if (view.getId() == R.id.web_services_button) {
+            this.home.notifyWebServiceButtonHasBeenPressed();
+        } else if (view.getId() == R.id.add_actor_button) {
+            this.home.notifyAddActorButtonHasBeenPressed();
+        }
     }
 }
