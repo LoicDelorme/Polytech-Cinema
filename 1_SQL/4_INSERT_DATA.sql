@@ -21,7 +21,7 @@ INSERT INTO categories (restricted_label, full_label) VALUES
 	('PO', 'Policier'),
 	('WE', 'Western');
 
-INSERT INTO movies (title, duration, released_date, budget, amont_of_revenue, id_director, id_category) VALUES
+INSERT INTO movies (title, duration, released_date, budget, amount_of_revenue, id_director, id_category) VALUES
 	('Léon', 110, '1994-04-14', 17531000, 69250000, 3, 3),
 	('Cash', 100, '2008-04-23', 18340000, 60340000, 4, 3),
 	('La grande vadrouille', 132, '1966-12-01', 7227000, 51258000, 2, 1),
