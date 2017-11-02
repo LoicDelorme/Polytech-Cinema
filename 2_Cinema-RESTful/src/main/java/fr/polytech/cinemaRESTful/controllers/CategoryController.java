@@ -76,8 +76,10 @@ public class CategoryController extends AbstractController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) {
+    public String delete(@PathVariable int id) {
         final Category category = this.categoryDaoServices.get(id);
         this.categoryDaoServices.delete(category);
+
+        return SERIALIZER.to(new SuccessResponse(null));
     }
 }

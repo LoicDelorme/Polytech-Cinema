@@ -86,8 +86,10 @@ public class ActorController extends AbstractController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) {
+    public String delete(@PathVariable int id) {
         final Actor actor = this.actorDaoServices.get(id);
         this.actorDaoServices.delete(actor);
+
+        return SERIALIZER.to(new SuccessResponse(null));
     }
 }

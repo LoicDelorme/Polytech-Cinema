@@ -76,12 +76,14 @@ public class CharacterController extends AbstractController {
     }
 
     @RequestMapping(value = "/delete/{movieId}/{actorId}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int movieId, @PathVariable int actorId) {
+    public String delete(@PathVariable int movieId, @PathVariable int actorId) {
         final CharacterPK characterPK = new CharacterPK();
         characterPK.setActor(this.actorDaoServices.get(actorId));
         characterPK.setMovie(this.movieDaoServices.get(movieId));
 
         final Character character = this.characterDaoServices.get(characterPK);
         this.characterDaoServices.delete(character);
+
+        return SERIALIZER.to(new SuccessResponse(null));
     }
 }

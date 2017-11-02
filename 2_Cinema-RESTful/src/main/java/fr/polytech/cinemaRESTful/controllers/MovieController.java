@@ -94,8 +94,10 @@ public class MovieController extends AbstractController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) {
+    public String delete(@PathVariable int id) {
         final Movie movie = this.movieDaoServices.get(id);
         this.movieDaoServices.delete(movie);
+
+        return SERIALIZER.to(new SuccessResponse(null));
     }
 }

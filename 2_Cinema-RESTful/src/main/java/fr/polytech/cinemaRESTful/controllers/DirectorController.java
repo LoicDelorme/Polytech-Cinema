@@ -76,8 +76,10 @@ public class DirectorController extends AbstractController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) {
+    public String delete(@PathVariable int id) {
         final Director director = this.directorDaoServices.get(id);
         this.directorDaoServices.delete(director);
+
+        return SERIALIZER.to(new SuccessResponse(null));
     }
 }

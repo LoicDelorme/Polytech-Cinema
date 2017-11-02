@@ -22,10 +22,10 @@ public class DeleteActorAsyncTask extends AbstractAsyncTask<Object> {
     @Override
     protected Object doInBackground(String... params) {
         try {
-            this.restfulRequester.delete(String.format(RESOURCE_URL, this.actor.getId()), new TypeToken<Response<Void>>() {
-            });
-
-            return new Object();
+            final Response<Object> response = this.restfulRequester.delete(String.format(RESOURCE_URL, this.actor.getId()), new TypeToken<Response<Object>>() {});
+            if (response.isSuccess()) {
+                return new Object();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
