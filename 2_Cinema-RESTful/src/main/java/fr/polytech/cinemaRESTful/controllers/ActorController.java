@@ -74,8 +74,7 @@ public class ActorController extends AbstractController {
     public String update(@RequestBody String data) {
         final ActorForm actorForm = DESERIALIZER.from(data, ActorForm.class);
 
-        final Actor actor = new Actor();
-        actor.setId(actorForm.getId());
+        final Actor actor = this.actorDaoServices.get(actorForm.getId());
         actor.setLastname(actorForm.getLastname());
         actor.setFirstname(actorForm.getFirstname());
         actor.setBirthDate(actorForm.getBirthDate());

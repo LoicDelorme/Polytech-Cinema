@@ -66,9 +66,11 @@ public class CharacterController extends AbstractController {
     public String update(@RequestBody String data) {
         final CharacterForm characterForm = DESERIALIZER.from(data, CharacterForm.class);
 
-        final Character character = new Character();
-        character.setMovie(this.movieDaoServices.get(characterForm.getMovieId()));
-        character.setActor(this.actorDaoServices.get(characterForm.getActorId()));
+        final CharacterPK characterPK = new CharacterPK();
+        characterPK.setMovie(this.movieDaoServices.get(characterForm.getMovieId()));
+        characterPK.setActor(this.actorDaoServices.get(characterForm.getActorId()));
+
+        final Character character = this.characterDaoServices.get(characterPK);
         character.setName(characterForm.getName());
 
         this.characterDaoServices.update(character);

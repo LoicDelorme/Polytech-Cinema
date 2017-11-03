@@ -66,8 +66,7 @@ public class DirectorController extends AbstractController {
     public String update(@RequestBody String data) {
         final DirectorForm directorForm = DESERIALIZER.from(data, DirectorForm.class);
 
-        final Director director = new Director();
-        director.setId(directorForm.getId());
+        final Director director = this.directorDaoServices.get(directorForm.getId());
         director.setLastname(directorForm.getLastname());
         director.setFirstname(directorForm.getFirstname());
 

@@ -66,8 +66,7 @@ public class CategoryController extends AbstractController {
     public String update(@RequestBody String data) {
         final CategoryForm categoryForm = DESERIALIZER.from(data, CategoryForm.class);
 
-        final Category category = new Category();
-        category.setId(categoryForm.getId());
+        final Category category = this.categoryDaoServices.get(categoryForm.getId());
         category.setRestrictedLabel(categoryForm.getRestrictedLabel());
         category.setFullLabel(categoryForm.getFullLabel());
 

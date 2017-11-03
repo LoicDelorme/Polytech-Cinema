@@ -79,8 +79,7 @@ public class MovieController extends AbstractController {
     public String update(@RequestBody String data) {
         final MovieForm movieForm = DESERIALIZER.from(data, MovieForm.class);
 
-        final Movie movie = new Movie();
-        movie.setId(movieForm.getId());
+        final Movie movie = this.movieDaoServices.get(movieForm.getId());
         movie.setTitle(movieForm.getTitle());
         movie.setDuration(movieForm.getDuration());
         movie.setReleaseDate(movieForm.getReleaseDate());
