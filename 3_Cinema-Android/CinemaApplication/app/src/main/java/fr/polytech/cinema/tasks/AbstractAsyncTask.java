@@ -9,7 +9,7 @@ import fr.polytech.cinema.restful.RestfulRequester;
 
 public abstract class AbstractAsyncTask<T> extends AsyncTask<String, Integer, T> {
 
-    public static final String API_URL = "http://10.0.2.2:8080/api/";
+    public static final String API_URL = "http://10.0.2.2:8090/api/";
 
     protected final RestfulRequester restfulRequester;
 
